@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.mars-crater.com/com/mars-crater/messages/totals"
+        xmlns:totals="http://www.mars-crater.com/com/mars-crater/messages/totals"
+        elementFormDefault="qualified">
+
+    <element name="totalsRequest" type="totals:TotalsRequest"></element>
+    <element name="totalsResponse" type="totals:TotalsResponse"></element>
+
+    <complexType name="TotalsRequest">
+        <sequence>
+            <element name="totals" type="totals:Totals"></element>
+        </sequence>
+    </complexType>
+
+    <complexType name="TotalsResponse">
+        <sequence>
+            <element name="totals" type="totals:Totals"></element>
+        </sequence>
+    </complexType>
+
+    <complexType name="Totals">
+        <sequence>
+            <element name="indexTypeTotals" type="totals:IndexTypeTotals" minOccurs="1" maxOccurs="unbounded"></element>
+            <element name="catTypeTotals" type="totals:CatTypeTotals" minOccurs="1" maxOccurs="unbounded"></element>
+            <element name="nonTypeTotals" type="totals:NonTypeTotals" minOccurs="1" maxOccurs="unbounded"></element>
+        </sequence>
+    </complexType>
+
+    <complexType name="IndexTypeTotals">
+        <sequence>
+            <element name="index" type="int"></element>
+            <element name="type" type="totals:Type"> </element>
+            <element name="LoadQtt" type="int"></element>
+            <element name="LoadAmnt" type="decimal"></element>
+            <element name="DistributedQtt" type="int"></element>
+            <element name="RecycledQtt" type="int"></element>
+        </sequence>
+    </complexType>
+
+    <complexType name="CatTypeTotals">
+        <sequence>
+            <element name="type" type="totals:Type"> </element>
+            <element name="RecycledQtt" type="int"></element>
+            <element name="RecycledAmnt" type="decimal"></element>
+            <element name="NonRecycledQtt" type="int"></element>
+            <element name="NonRecycledAmnt" type="decimal"></element>
+        </sequence>
+    </complexType>
+
+    <complexType name="NonTypeTotals">
+        <sequence>
+            <element name="type" type="totals:Type"> </element>
+            <element name="LoadQtt" type="int"></element>
+        </sequence>
+    </complexType>
+
+    <simpleType name="Type">
+        <restriction base="string">
+            <enumeration value="index"/>
+            <enumeration value="category"/>
+            <enumeration value="other"/>
+        </restriction>
+    </simpleType>
+
+</schema>
